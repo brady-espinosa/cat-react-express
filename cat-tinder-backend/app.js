@@ -9,6 +9,13 @@ app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
+app.get('/cats', function(request,response){
+  Cat.findAll().then(function(cats){
+    response.status(200)
+    response.json({status: 'success', cats: cats})
+  })
+})
+
 app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
